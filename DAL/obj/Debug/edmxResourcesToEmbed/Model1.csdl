@@ -1,0 +1,631 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VetclinicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AmbulatoryCard">
+    <Key>
+      <PropertyRef Name="AmbulatoryCardId" />
+    </Key>
+    <Property Name="AmbulatoryCardId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Pet" Type="Int32" Nullable="false" />
+    <Property Name="Anamnesis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FullNameDr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Pet1" Relationship="Self.FK_AmbulatoryCard_Pet" FromRole="AmbulatoryCard" ToRole="Pet" />
+    <NavigationProperty Name="Diagnoses" Relationship="Self.FK_Diagnoses_AmbulatoryCard" FromRole="AmbulatoryCard" ToRole="Diagnoses" />
+  </EntityType>
+  <EntityType Name="Animal">
+    <Key>
+      <PropertyRef Name="AnimalId" />
+    </Key>
+    <Property Name="AnimalId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Breed" Relationship="Self.FK_Breed_Animal" FromRole="Animal" ToRole="Breed" />
+  </EntityType>
+  <EntityType Name="Breed">
+    <Key>
+      <PropertyRef Name="BreedId" />
+    </Key>
+    <Property Name="BreedId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Animal" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Animal1" Relationship="Self.FK_Breed_Animal" FromRole="Breed" ToRole="Animal" />
+    <NavigationProperty Name="Pet" Relationship="Self.FK_Pet_Breed" FromRole="Breed" ToRole="Pet" />
+  </EntityType>
+  <EntityType Name="Diagnoses">
+    <Key>
+      <PropertyRef Name="DiagnosesId" />
+    </Key>
+    <Property Name="DiagnosesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Diagnosis" Type="Int32" Nullable="false" />
+    <Property Name="AmbulatoryCard" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AmbulatoryCard1" Relationship="Self.FK_Diagnoses_AmbulatoryCard" FromRole="Diagnoses" ToRole="AmbulatoryCard" />
+    <NavigationProperty Name="Diagnosis1" Relationship="Self.FK_Diagnoses_Diagnosis" FromRole="Diagnoses" ToRole="Diagnosis" />
+  </EntityType>
+  <EntityType Name="Diagnosis">
+    <Key>
+      <PropertyRef Name="DiagnosisId" />
+    </Key>
+    <Property Name="DiagnosisId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Diagnoses" Relationship="Self.FK_Diagnoses_Diagnosis" FromRole="Diagnosis" ToRole="Diagnoses" />
+  </EntityType>
+  <EntityType Name="Owner">
+    <Key>
+      <PropertyRef Name="OwnerId" />
+    </Key>
+    <Property Name="OwnerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Pet" Relationship="Self.FK_Pet_Owner" FromRole="Owner" ToRole="Pet" />
+  </EntityType>
+  <EntityType Name="Pet">
+    <Key>
+      <PropertyRef Name="PetId" />
+    </Key>
+    <Property Name="PetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Breed" Type="Int32" Nullable="false" />
+    <Property Name="Nickname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateofBirth" Type="DateTime" Precision="0" />
+    <Property Name="Sex" Type="Int32" Nullable="false" />
+    <Property Name="Owner" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="AmbulatoryCard" Relationship="Self.FK_AmbulatoryCard_Pet" FromRole="Pet" ToRole="AmbulatoryCard" />
+    <NavigationProperty Name="Breed1" Relationship="Self.FK_Pet_Breed" FromRole="Pet" ToRole="Breed" />
+    <NavigationProperty Name="Owner1" Relationship="Self.FK_Pet_Owner" FromRole="Pet" ToRole="Owner" />
+    <NavigationProperty Name="Sex1" Relationship="Self.FK_Pet_Sex" FromRole="Pet" ToRole="Sex" />
+    <NavigationProperty Name="Record" Relationship="Self.FK_Record_Pet" FromRole="Pet" ToRole="Record" />
+    <NavigationProperty Name="Visit" Relationship="Self.FK_Visit_Pet" FromRole="Pet" ToRole="Visit" />
+  </EntityType>
+  <EntityType Name="Record">
+    <Key>
+      <PropertyRef Name="RecordId" />
+    </Key>
+    <Property Name="RecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TimeVisit" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Available" Type="Boolean" Nullable="false" />
+    <Property Name="Doctor" Type="Int32" Nullable="false" />
+    <Property Name="Service" Type="Int32" />
+    <Property Name="Visit" Type="Int32" />
+    <Property Name="Pet" Type="Int32" />
+    <Property Name="Day" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Pet1" Relationship="Self.FK_Record_Pet" FromRole="Record" ToRole="Pet" />
+    <NavigationProperty Name="Visit1" Relationship="Self.FK_Record_DoctorVisit" FromRole="Record" ToRole="Visit" />
+    <NavigationProperty Name="ScheduleDay" Relationship="Self.FK_Record_ScheduleDay" FromRole="Record" ToRole="ScheduleDay" />
+    <NavigationProperty Name="Service1" Relationship="Self.FK_Record_Service" FromRole="Record" ToRole="Service" />
+    <NavigationProperty Name="UserSys" Relationship="Self.FK_Record_UserSys" FromRole="Record" ToRole="UserSys" />
+  </EntityType>
+  <EntityType Name="Schedule">
+    <Key>
+      <PropertyRef Name="ScheduleId" />
+    </Key>
+    <Property Name="ScheduleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstDay" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="LastDay" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Doctor" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="UserSys" Relationship="Self.FK_Schedule_UserSys" FromRole="Schedule" ToRole="UserSys" />
+    <NavigationProperty Name="ScheduleDay" Relationship="Self.FK_ScheduleDay_Schedule" FromRole="Schedule" ToRole="ScheduleDay" />
+  </EntityType>
+  <EntityType Name="ScheduleDay">
+    <Key>
+      <PropertyRef Name="ScheduleDayId" />
+    </Key>
+    <Property Name="ScheduleDayId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TimeBegin" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="TimeEnd" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Schedule" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Record" Relationship="Self.FK_Record_ScheduleDay" FromRole="ScheduleDay" ToRole="Record" />
+    <NavigationProperty Name="Schedule1" Relationship="Self.FK_ScheduleDay_Schedule" FromRole="ScheduleDay" ToRole="Schedule" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="ServiceId" />
+    </Key>
+    <Property Name="ServiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="Specialization" Type="Int32" Nullable="false" />
+    <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
+    <NavigationProperty Name="Record" Relationship="Self.FK_Record_Service" FromRole="Service" ToRole="Record" />
+    <NavigationProperty Name="Specialization1" Relationship="Self.FK_Service_Specialization" FromRole="Service" ToRole="Specialization" />
+    <NavigationProperty Name="ServicesOfVisit" Relationship="Self.FK_ServicesOfVisit_Service" FromRole="Service" ToRole="ServicesOfVisit" />
+  </EntityType>
+  <EntityType Name="ServicesOfVisit">
+    <Key>
+      <PropertyRef Name="ServicesOfVisitId" />
+    </Key>
+    <Property Name="ServicesOfVisitId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Visit" Type="Int32" Nullable="false" />
+    <Property Name="Service" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Service1" Relationship="Self.FK_ServicesOfVisit_Service" FromRole="ServicesOfVisit" ToRole="Service" />
+    <NavigationProperty Name="Visit1" Relationship="Self.FK_ServicesOfVisit_Visit" FromRole="ServicesOfVisit" ToRole="Visit" />
+  </EntityType>
+  <EntityType Name="Sex">
+    <Key>
+      <PropertyRef Name="SexId" />
+    </Key>
+    <Property Name="SexId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Pet" Relationship="Self.FK_Pet_Sex" FromRole="Sex" ToRole="Pet" />
+  </EntityType>
+  <EntityType Name="Specialization">
+    <Key>
+      <PropertyRef Name="SpecializationId" />
+    </Key>
+    <Property Name="SpecializationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Service" Relationship="Self.FK_Service_Specialization" FromRole="Specialization" ToRole="Service" />
+    <NavigationProperty Name="UserSys" Relationship="Self.FK_UserSys_Specialization" FromRole="Specialization" ToRole="UserSys" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UserSys">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
+    <Property Name="Specialization" Type="Int32" />
+    <NavigationProperty Name="Record" Relationship="Self.FK_Record_UserSys" FromRole="UserSys" ToRole="Record" />
+    <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_UserSys" FromRole="UserSys" ToRole="Schedule" />
+    <NavigationProperty Name="Specialization1" Relationship="Self.FK_UserSys_Specialization" FromRole="UserSys" ToRole="Specialization" />
+    <NavigationProperty Name="UserType" Relationship="Self.FK_UserSys_UserType" FromRole="UserSys" ToRole="UserType" />
+    <NavigationProperty Name="Visit" Relationship="Self.FK_Visit_UserSys" FromRole="UserSys" ToRole="Visit" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="TypeId" />
+    </Key>
+    <Property Name="TypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="UserSys" Relationship="Self.FK_UserSys_UserType" FromRole="UserType" ToRole="UserSys" />
+  </EntityType>
+  <EntityType Name="Visit">
+    <Key>
+      <PropertyRef Name="VisitId" />
+    </Key>
+    <Property Name="VisitId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cost" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="Doctor" Type="Int32" Nullable="false" />
+    <Property Name="Pet" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Time" Type="Time" Nullable="false" Precision="7" />
+    <NavigationProperty Name="Pet1" Relationship="Self.FK_Visit_Pet" FromRole="Visit" ToRole="Pet" />
+    <NavigationProperty Name="Record" Relationship="Self.FK_Record_DoctorVisit" FromRole="Visit" ToRole="Record" />
+    <NavigationProperty Name="ServicesOfVisit" Relationship="Self.FK_ServicesOfVisit_Visit" FromRole="Visit" ToRole="ServicesOfVisit" />
+    <NavigationProperty Name="UserSys" Relationship="Self.FK_Visit_UserSys" FromRole="Visit" ToRole="UserSys" />
+    <NavigationProperty Name="VisitStatus" Relationship="Self.FK_Visit_VisitStatus" FromRole="Visit" ToRole="VisitStatus" />
+  </EntityType>
+  <EntityType Name="VisitStatus">
+    <Key>
+      <PropertyRef Name="VisitStatusId" />
+    </Key>
+    <Property Name="VisitStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Visit" Relationship="Self.FK_Visit_VisitStatus" FromRole="VisitStatus" ToRole="Visit" />
+  </EntityType>
+  <Association Name="FK_AmbulatoryCard_Pet">
+    <End Role="Pet" Type="Self.Pet" Multiplicity="1" />
+    <End Role="AmbulatoryCard" Type="Self.AmbulatoryCard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pet">
+        <PropertyRef Name="PetId" />
+      </Principal>
+      <Dependent Role="AmbulatoryCard">
+        <PropertyRef Name="Pet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Diagnoses_AmbulatoryCard">
+    <End Role="AmbulatoryCard" Type="Self.AmbulatoryCard" Multiplicity="1" />
+    <End Role="Diagnoses" Type="Self.Diagnoses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AmbulatoryCard">
+        <PropertyRef Name="AmbulatoryCardId" />
+      </Principal>
+      <Dependent Role="Diagnoses">
+        <PropertyRef Name="AmbulatoryCard" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Breed_Animal">
+    <End Role="Animal" Type="Self.Animal" Multiplicity="1" />
+    <End Role="Breed" Type="Self.Breed" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Animal">
+        <PropertyRef Name="AnimalId" />
+      </Principal>
+      <Dependent Role="Breed">
+        <PropertyRef Name="Animal" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pet_Breed">
+    <End Role="Breed" Type="Self.Breed" Multiplicity="1" />
+    <End Role="Pet" Type="Self.Pet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Breed">
+        <PropertyRef Name="BreedId" />
+      </Principal>
+      <Dependent Role="Pet">
+        <PropertyRef Name="Breed" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Diagnoses_Diagnosis">
+    <End Role="Diagnosis" Type="Self.Diagnosis" Multiplicity="1" />
+    <End Role="Diagnoses" Type="Self.Diagnoses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Diagnosis">
+        <PropertyRef Name="DiagnosisId" />
+      </Principal>
+      <Dependent Role="Diagnoses">
+        <PropertyRef Name="Diagnosis" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pet_Owner">
+    <End Role="Owner" Type="Self.Owner" Multiplicity="1" />
+    <End Role="Pet" Type="Self.Pet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Owner">
+        <PropertyRef Name="OwnerId" />
+      </Principal>
+      <Dependent Role="Pet">
+        <PropertyRef Name="Owner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pet_Sex">
+    <End Role="Sex" Type="Self.Sex" Multiplicity="1" />
+    <End Role="Pet" Type="Self.Pet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sex">
+        <PropertyRef Name="SexId" />
+      </Principal>
+      <Dependent Role="Pet">
+        <PropertyRef Name="Sex" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Record_Pet">
+    <End Role="Pet" Type="Self.Pet" Multiplicity="0..1" />
+    <End Role="Record" Type="Self.Record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pet">
+        <PropertyRef Name="PetId" />
+      </Principal>
+      <Dependent Role="Record">
+        <PropertyRef Name="Pet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Visit_Pet">
+    <End Role="Pet" Type="Self.Pet" Multiplicity="1" />
+    <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pet">
+        <PropertyRef Name="PetId" />
+      </Principal>
+      <Dependent Role="Visit">
+        <PropertyRef Name="Pet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Record_DoctorVisit">
+    <End Role="Visit" Type="Self.Visit" Multiplicity="0..1" />
+    <End Role="Record" Type="Self.Record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Visit">
+        <PropertyRef Name="VisitId" />
+      </Principal>
+      <Dependent Role="Record">
+        <PropertyRef Name="Visit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Record_ScheduleDay">
+    <End Role="ScheduleDay" Type="Self.ScheduleDay" Multiplicity="1" />
+    <End Role="Record" Type="Self.Record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ScheduleDay">
+        <PropertyRef Name="ScheduleDayId" />
+      </Principal>
+      <Dependent Role="Record">
+        <PropertyRef Name="Day" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Record_Service">
+    <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+    <End Role="Record" Type="Self.Record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="ServiceId" />
+      </Principal>
+      <Dependent Role="Record">
+        <PropertyRef Name="Service" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Record_UserSys">
+    <End Role="UserSys" Type="Self.UserSys" Multiplicity="1" />
+    <End Role="Record" Type="Self.Record" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserSys">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Record">
+        <PropertyRef Name="Doctor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Schedule_UserSys">
+    <End Role="UserSys" Type="Self.UserSys" Multiplicity="1" />
+    <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserSys">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Schedule">
+        <PropertyRef Name="Doctor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ScheduleDay_Schedule">
+    <End Role="Schedule" Type="Self.Schedule" Multiplicity="1" />
+    <End Role="ScheduleDay" Type="Self.ScheduleDay" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schedule">
+        <PropertyRef Name="ScheduleId" />
+      </Principal>
+      <Dependent Role="ScheduleDay">
+        <PropertyRef Name="Schedule" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Service_Specialization">
+    <End Role="Specialization" Type="Self.Specialization" Multiplicity="1" />
+    <End Role="Service" Type="Self.Service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specialization">
+        <PropertyRef Name="SpecializationId" />
+      </Principal>
+      <Dependent Role="Service">
+        <PropertyRef Name="Specialization" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServicesOfVisit_Service">
+    <End Role="Service" Type="Self.Service" Multiplicity="1" />
+    <End Role="ServicesOfVisit" Type="Self.ServicesOfVisit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="ServiceId" />
+      </Principal>
+      <Dependent Role="ServicesOfVisit">
+        <PropertyRef Name="Service" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServicesOfVisit_Visit">
+    <End Role="Visit" Type="Self.Visit" Multiplicity="1" />
+    <End Role="ServicesOfVisit" Type="Self.ServicesOfVisit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Visit">
+        <PropertyRef Name="VisitId" />
+      </Principal>
+      <Dependent Role="ServicesOfVisit">
+        <PropertyRef Name="Visit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserSys_Specialization">
+    <End Role="Specialization" Type="Self.Specialization" Multiplicity="0..1" />
+    <End Role="UserSys" Type="Self.UserSys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Specialization">
+        <PropertyRef Name="SpecializationId" />
+      </Principal>
+      <Dependent Role="UserSys">
+        <PropertyRef Name="Specialization" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserSys_UserType">
+    <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
+    <End Role="UserSys" Type="Self.UserSys" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="TypeId" />
+      </Principal>
+      <Dependent Role="UserSys">
+        <PropertyRef Name="Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Visit_UserSys">
+    <End Role="UserSys" Type="Self.UserSys" Multiplicity="1" />
+    <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserSys">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Visit">
+        <PropertyRef Name="Doctor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Visit_VisitStatus">
+    <End Role="VisitStatus" Type="Self.VisitStatus" Multiplicity="1" />
+    <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VisitStatus">
+        <PropertyRef Name="VisitStatusId" />
+      </Principal>
+      <Dependent Role="Visit">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="VetclinicEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AmbulatoryCard" EntityType="Self.AmbulatoryCard" />
+    <EntitySet Name="Animal" EntityType="Self.Animal" />
+    <EntitySet Name="Breed" EntityType="Self.Breed" />
+    <EntitySet Name="Diagnoses" EntityType="Self.Diagnoses" />
+    <EntitySet Name="Diagnosis" EntityType="Self.Diagnosis" />
+    <EntitySet Name="Owner" EntityType="Self.Owner" />
+    <EntitySet Name="Pet" EntityType="Self.Pet" />
+    <EntitySet Name="Record" EntityType="Self.Record" />
+    <EntitySet Name="Schedule" EntityType="Self.Schedule" />
+    <EntitySet Name="ScheduleDay" EntityType="Self.ScheduleDay" />
+    <EntitySet Name="Service" EntityType="Self.Service" />
+    <EntitySet Name="ServicesOfVisit" EntityType="Self.ServicesOfVisit" />
+    <EntitySet Name="Sex" EntityType="Self.Sex" />
+    <EntitySet Name="Specialization" EntityType="Self.Specialization" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="UserSys" EntityType="Self.UserSys" />
+    <EntitySet Name="UserType" EntityType="Self.UserType" />
+    <EntitySet Name="Visit" EntityType="Self.Visit" />
+    <EntitySet Name="VisitStatus" EntityType="Self.VisitStatus" />
+    <AssociationSet Name="FK_AmbulatoryCard_Pet" Association="Self.FK_AmbulatoryCard_Pet">
+      <End Role="Pet" EntitySet="Pet" />
+      <End Role="AmbulatoryCard" EntitySet="AmbulatoryCard" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Diagnoses_AmbulatoryCard" Association="Self.FK_Diagnoses_AmbulatoryCard">
+      <End Role="AmbulatoryCard" EntitySet="AmbulatoryCard" />
+      <End Role="Diagnoses" EntitySet="Diagnoses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Breed_Animal" Association="Self.FK_Breed_Animal">
+      <End Role="Animal" EntitySet="Animal" />
+      <End Role="Breed" EntitySet="Breed" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pet_Breed" Association="Self.FK_Pet_Breed">
+      <End Role="Breed" EntitySet="Breed" />
+      <End Role="Pet" EntitySet="Pet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Diagnoses_Diagnosis" Association="Self.FK_Diagnoses_Diagnosis">
+      <End Role="Diagnosis" EntitySet="Diagnosis" />
+      <End Role="Diagnoses" EntitySet="Diagnoses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pet_Owner" Association="Self.FK_Pet_Owner">
+      <End Role="Owner" EntitySet="Owner" />
+      <End Role="Pet" EntitySet="Pet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pet_Sex" Association="Self.FK_Pet_Sex">
+      <End Role="Sex" EntitySet="Sex" />
+      <End Role="Pet" EntitySet="Pet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Record_Pet" Association="Self.FK_Record_Pet">
+      <End Role="Pet" EntitySet="Pet" />
+      <End Role="Record" EntitySet="Record" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Visit_Pet" Association="Self.FK_Visit_Pet">
+      <End Role="Pet" EntitySet="Pet" />
+      <End Role="Visit" EntitySet="Visit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Record_DoctorVisit" Association="Self.FK_Record_DoctorVisit">
+      <End Role="Visit" EntitySet="Visit" />
+      <End Role="Record" EntitySet="Record" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Record_ScheduleDay" Association="Self.FK_Record_ScheduleDay">
+      <End Role="ScheduleDay" EntitySet="ScheduleDay" />
+      <End Role="Record" EntitySet="Record" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Record_Service" Association="Self.FK_Record_Service">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="Record" EntitySet="Record" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Record_UserSys" Association="Self.FK_Record_UserSys">
+      <End Role="UserSys" EntitySet="UserSys" />
+      <End Role="Record" EntitySet="Record" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Schedule_UserSys" Association="Self.FK_Schedule_UserSys">
+      <End Role="UserSys" EntitySet="UserSys" />
+      <End Role="Schedule" EntitySet="Schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ScheduleDay_Schedule" Association="Self.FK_ScheduleDay_Schedule">
+      <End Role="Schedule" EntitySet="Schedule" />
+      <End Role="ScheduleDay" EntitySet="ScheduleDay" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Service_Specialization" Association="Self.FK_Service_Specialization">
+      <End Role="Specialization" EntitySet="Specialization" />
+      <End Role="Service" EntitySet="Service" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServicesOfVisit_Service" Association="Self.FK_ServicesOfVisit_Service">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="ServicesOfVisit" EntitySet="ServicesOfVisit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServicesOfVisit_Visit" Association="Self.FK_ServicesOfVisit_Visit">
+      <End Role="Visit" EntitySet="Visit" />
+      <End Role="ServicesOfVisit" EntitySet="ServicesOfVisit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserSys_Specialization" Association="Self.FK_UserSys_Specialization">
+      <End Role="Specialization" EntitySet="Specialization" />
+      <End Role="UserSys" EntitySet="UserSys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserSys_UserType" Association="Self.FK_UserSys_UserType">
+      <End Role="UserType" EntitySet="UserType" />
+      <End Role="UserSys" EntitySet="UserSys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Visit_UserSys" Association="Self.FK_Visit_UserSys">
+      <End Role="UserSys" EntitySet="UserSys" />
+      <End Role="Visit" EntitySet="Visit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Visit_VisitStatus" Association="Self.FK_Visit_VisitStatus">
+      <End Role="VisitStatus" EntitySet="VisitStatus" />
+      <End Role="Visit" EntitySet="Visit" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(VetclinicModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(VetclinicModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

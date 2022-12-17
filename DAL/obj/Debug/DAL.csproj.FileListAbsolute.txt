@@ -1,0 +1,12 @@
+D:\Программы Visual studio\AnimalMed\DAL\bin\Debug\DAL.dll.config
+D:\Программы Visual studio\AnimalMed\DAL\bin\Debug\DAL.dll
+D:\Программы Visual studio\AnimalMed\DAL\bin\Debug\DAL.pdb
+D:\Программы Visual studio\AnimalMed\DAL\bin\Debug\EntityFramework.dll
+D:\Программы Visual studio\AnimalMed\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Программы Visual studio\AnimalMed\DAL\bin\Debug\EntityFramework.xml
+D:\Программы Visual studio\AnimalMed\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Программы Visual studio\AnimalMed\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+D:\Программы Visual studio\AnimalMed\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\Программы Visual studio\AnimalMed\DAL\obj\Debug\DAL.csproj.CopyComplete
+D:\Программы Visual studio\AnimalMed\DAL\obj\Debug\DAL.dll
+D:\Программы Visual studio\AnimalMed\DAL\obj\Debug\DAL.pdb

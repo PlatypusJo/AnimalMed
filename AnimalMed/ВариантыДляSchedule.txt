@@ -1,0 +1,679 @@
+<!--#region Через DataGrid не очень-->
+        <!--<DataGrid Grid.Row="1" ItemsSource="{Binding Doctors}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ФИО" Binding="{Binding Path=Name}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Специализация" Binding="{Binding Path=Specialization.Name}"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="ПН">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <ListBox x:Name="Records1List" ItemsSource="{Binding Records[0]}" Width="200">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Width="{Binding Path=ActualWidth, ElementName=Records1List}"/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button Content="{Binding Time}" />
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="ВТ">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <ListBox x:Name="Records2List" ItemsSource="{Binding Records[1]}" Width="200">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Width="{Binding Path=ActualWidth, ElementName=Records2List}"/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button Content="{Binding Time}"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="СР">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <ListBox x:Name="Records3List" ItemsSource="{Binding Records[2]}" Width="200">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Width="{Binding Path=ActualWidth, ElementName=Records3List}"/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button Content="{Binding Time}"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="ЧТ">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <ListBox x:Name="Records4List" ItemsSource="{Binding Records[3]}" Width="200">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Width="{Binding Path=ActualWidth, ElementName=Records4List}"/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button Content="{Binding Time}"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="ПТ">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <ListBox x:Name="Records5List" ItemsSource="{Binding Records[4]}" Width="200">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Width="{Binding Path=ActualWidth, ElementName=Records5List}"/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button Content="{Binding Time}"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="СБ">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <ListBox x:Name="Records6List" ItemsSource="{Binding Records[5]}" Width="200">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Width="{Binding Path=ActualWidth, ElementName=Records6List}"/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button Content="{Binding Time}"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="ВС">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <ListBox x:Name="Records7List" ItemsSource="{Binding Records[6]}" Width="200">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Width="{Binding Path=ActualWidth, ElementName=Records7List}"/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button Content="{Binding Time}"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>-->
+        <!--#endregion-->
+        <!--#region Класс!!! Расписание с фиксированным оглавением и скроллящееся-->
+        <ScrollViewer VerticalScrollBarVisibility="Disabled" Grid.Row="1" HorizontalScrollBarVisibility="Visible">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="60*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Margin="3" Orientation="Horizontal">
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ФИО "/>
+                    </Border>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" Специализация "/>
+                    </Border>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ПН"/>
+                    </Border>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ВТ "/>
+                    </Border>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" СР "/>
+                    </Border>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ЧТ "/>
+                    </Border>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ПТ "/>
+                    </Border>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" СБ "/>
+                    </Border>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ВС "/>
+                    </Border>
+                </StackPanel>
+                <!--<ScrollViewer  Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible">-->
+                    <ListBox  Grid.Row="1" ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemsSource="{Binding Doctors}" BorderThickness="0">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Padding" Value="0"/>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <TextBlock Style="{DynamicResource DoctorInfo}" Text="{Binding Name}"></TextBlock>
+                                    </Border>
+                                    <Border BorderBrush="Black" BorderThickness="1">
+                                        <TextBlock Style="{DynamicResource DoctorInfo}" Text="{Binding Specialization.Name}"></TextBlock>
+                                    </Border>
+                                    <ListBox ItemsSource="{Binding Records}" BorderThickness="0" Background="Black">
+                                        <ListBox.ItemContainerStyle>
+                                            <Style TargetType="ListBoxItem">
+                                                <Setter Property="Padding" Value="0"/>
+                                            </Style>
+                                        </ListBox.ItemContainerStyle>
+                                        <ListBox.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel/>
+                                            </ItemsPanelTemplate>
+                                        </ListBox.ItemsPanel>
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <ListBox BorderBrush="LightBlue" BorderThickness="2" Background="LightBlue" x:Name="Record1List" Width="200" Height="200" ItemsSource="{Binding}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                                    <ListBox.ItemContainerStyle>
+                                                        <Style TargetType="ListBoxItem">
+                                                            <Setter Property="Padding" Value="3"/>
+                                                        </Style>
+                                                    </ListBox.ItemContainerStyle>
+                                                    <ListBox.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel Width="200"/>
+                                                        </ItemsPanelTemplate>
+                                                    </ListBox.ItemsPanel>
+                                                    <ListBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Button Width="40" Height="40" Content="{Binding Time}" Background="{Binding Color}"/>
+                                                        </DataTemplate>
+                                                    </ListBox.ItemTemplate>
+                                                </ListBox>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                <!--</ScrollViewer>-->
+            </Grid>
+        </ScrollViewer>
+        <!--#endregion-->
+        <!--#region Интересный вариант, но не очень-->
+        <!--<ScrollViewer  Grid.Row="1" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical" Height="10*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <ItemsControl Grid.Row="0" Padding="3" Background="LightBlue">
+                    <StackPanel Orientation="Horizontal">
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ФИО "/>
+                        </Border>
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <TextBlock Style="{DynamicResource TopOfScedule}" Text=" Специализация "/>
+                        </Border>
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ПН"/>
+                        </Border>
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ВТ "/>
+                        </Border>
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <TextBlock Style="{DynamicResource TopOfScedule}" Text=" СР "/>
+                        </Border>
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ЧТ "/>
+                        </Border>
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ПТ "/>
+                        </Border>
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <TextBlock Style="{DynamicResource TopOfScedule}" Text=" СБ "/>
+                        </Border>
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ВС "/>
+                        </Border>
+                    </StackPanel>
+                </ItemsControl>
+                <ListBox Background="LightBlue" Grid.Row="1" IsHitTestVisible="True" ItemsSource="{Binding Doctors}" Grid.RowSpan="2" BorderThickness="0">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Padding" Value="0"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                                <Border BorderBrush="Black" BorderThickness="1">
+                                    <TextBlock Style="{DynamicResource DoctorInfo}" Text="{Binding Name}"></TextBlock>
+                                </Border>
+                                <Border BorderBrush="Black" BorderThickness="1">
+                                    <TextBlock Style="{DynamicResource DoctorInfo}" Text="{Binding Specialization.Name}"></TextBlock>
+                                </Border>
+                                <ListBox ItemsSource="{Binding Records}" BorderThickness="0" Background="Black">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem">
+                                            <Setter Property="Padding" Value="0"/>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <ListBox BorderBrush="LightBlue" BorderThickness="2" Background="LightBlue" x:Name="Record1List" Width="200" Height="200" ItemsSource="{Binding}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                                <ListBox.ItemContainerStyle>
+                                                    <Style TargetType="ListBoxItem">
+                                                        <Setter Property="Padding" Value="3"/>
+                                                    </Style>
+                                                </ListBox.ItemContainerStyle>
+                                                <ListBox.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel Width="200"/>
+                                                    </ItemsPanelTemplate>
+                                                </ListBox.ItemsPanel>
+                                                <ListBox.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Button Width="40" Height="40" Content="{Binding Time}" Background="{Binding Color}"/>
+                                                    </DataTemplate>
+                                                </ListBox.ItemTemplate>
+                                            </ListBox>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </ScrollViewer>-->
+        			<!--#region Много листбоксов--> 
+                                <!--<ListBox x:Name="Records1List" ItemsSource="{Binding Records[0]}" Width="200">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Width="{Binding Path=ActualWidth, ElementName=Records1List}"/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button Content="{Binding Time}"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <ListBox x:Name="Records2List" ItemsSource="{Binding Records[1]}" Width="200">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Width="{Binding Path=ActualWidth, ElementName=Records2List}"/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button Content="{Binding Time}"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <ListBox x:Name="Records3List" ItemsSource="{Binding Records[2]}" Width="200">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Width="{Binding Path=ActualWidth, ElementName=Records3List}"/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button Content="{Binding Time}"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <ListBox x:Name="Records4List" ItemsSource="{Binding Records[3]}" Width="200">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Width="{Binding Path=ActualWidth, ElementName=Records4List}"/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button Content="{Binding Time}"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <ListBox x:Name="Records5List" ItemsSource="{Binding Records[4]}" Width="200">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Width="{Binding Path=ActualWidth, ElementName=Records5List}"/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button Content="{Binding Time}"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <ListBox x:Name="Records6List" ItemsSource="{Binding Records[5]}" Width="200">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Width="{Binding Path=ActualWidth, ElementName=Records6List}"/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button Content="{Binding Time}"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <ListBox x:Name="Records7List" ItemsSource="{Binding Records[6]}" Width="200">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Width="{Binding Path=ActualWidth, ElementName=Records7List}"/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Button Content="{Binding Time}"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>-->
+                                <!--#endregion-->
+        <!--#endregion-->
+
+
+        <!--#region Хорошие были времена-->
+        <Page x:Class="AnimalMed.Schedule"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AnimalMed"
+      xmlns:vm ="clr-namespace:AnimalMed.ViewModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Schedule">
+    <Page.DataContext>
+        <vm:DoctorViewModule/>
+    </Page.DataContext>
+    <Page.Resources>
+        <Style x:Key="TopOfScedule" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Height" Value="50"/> <!--Height = 100-->
+            <Setter Property="Width" Value="135"/> <!--Width = 200-->
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style x:Key="DoctorInfo" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Height" Value="50"/> <!--Height = 100-->
+            <Setter Property="Width" Value="135"/> <!--Width = 200-->
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100*"></RowDefinition>
+            <RowDefinition Height="850*"></RowDefinition>
+            <RowDefinition Height="50*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Row="0" Fill="#01BAF0"/>
+        <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="32" Foreground="White" Text="РАСПИСАНИЕ"/>
+        <!--#region МегаСуперДуперРешение, которое не будет работать-->
+        <!--<Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="60*"/>
+                </Grid.RowDefinitions>
+                <Rectangle Grid.Row="0" Fill="#01BAF0"/>
+                <Grid Grid.Row="0" ShowGridLines="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ФИО "/>
+                    </Border>
+                    <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" Специализация "/>
+                    </Border>
+                    <Border Grid.Column="2" BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ПН"/>
+                    </Border>
+                    <Border Grid.Column="3" BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ВТ "/>
+                    </Border>
+                    <Border Grid.Column="4" BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" СР "/>
+                    </Border>
+                    <Border Grid.Column="5" BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ЧТ "/>
+                    </Border>
+                    <Border Grid.Column="6" BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ПТ "/>
+                    </Border>
+                    <Border Grid.Column="7" BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" СБ "/>
+                    </Border>
+                    <Border Grid.Column="8" BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ВС "/>
+                    </Border>
+                </Grid>
+                <ListBox Grid.Row="1" ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemsSource="{Binding Doctors}" BorderThickness="0">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Padding" Value="0"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="100"/>
+                            </Grid.RowDefinitions>
+                                <Border Grid.Row="0" Grid.Column="0" BorderBrush="Black" BorderThickness="1">
+                                    <TextBlock Style="{DynamicResource DoctorInfo}" Text="{Binding Name}"></TextBlock>
+                                </Border>
+                                <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1">
+                                    <TextBlock Style="{DynamicResource DoctorInfo}" Text="{Binding Specialization.Name}"></TextBlock>
+                                </Border>
+                                <ListBox Grid.Column="2" ItemsSource="{Binding Records}" BorderThickness="0">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem">
+                                            <Setter Property="Padding" Value="0"/>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <ListBox BorderBrush="White" BorderThickness="2" x:Name="Record1List" ItemsSource="{Binding}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                                            --><!--Width = 200 Height = 200-->
+                                            <!--Width="135" Height="120"--><!--
+                                                <ListBox.ItemContainerStyle>
+                                                    <Style TargetType="ListBoxItem">
+                                                        <Setter Property="Padding" Value="3"/>
+                                                    </Style>
+                                                </ListBox.ItemContainerStyle>
+                                                <ListBox.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel/>
+                                                        --><!--Width = 200-->
+                                                        <!--Width="150"--><!--
+                                                    </ItemsPanelTemplate>
+                                                </ListBox.ItemsPanel>
+                                                <ListBox.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Button Content="{Binding Time}" Background="{Binding Color}"/>
+                                                        --><!--Width = 40 Height = 40-->
+                                                        <!--Width="35" Height="35"--><!--
+                                                    </DataTemplate>
+                                                </ListBox.ItemTemplate>
+                                            </ListBox>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>-->
+            <!--#endregion-->
+        <!--#region Класс!!! Расписание с фиксированным оглавением и скроллящееся-->
+        <ScrollViewer VerticalScrollBarVisibility="Disabled" Grid.Row="1" HorizontalScrollBarVisibility="Visible">
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="60*"/>
+                </Grid.RowDefinitions>
+                <Rectangle Grid.Row="0" Fill="#01BAF0"/>
+            <!--<Viewbox Grid.Row="0" Stretch="Uniform">-->
+                <StackPanel Grid.Row="0" Margin="3" Orientation="Horizontal">
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ФИО "/>
+                    </Border>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" Специализация "/>
+                    </Border>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ПН"/>
+                    </Border>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ВТ "/>
+                    </Border>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" СР "/>
+                    </Border>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ЧТ "/>
+                    </Border>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ПТ "/>
+                    </Border>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" СБ "/>
+                    </Border>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                        <TextBlock Style="{DynamicResource TopOfScedule}" Text=" ВС "/>
+                    </Border>
+                </StackPanel>
+            <!--</Viewbox>-->
+            <ListBox Grid.Row="1" ScrollViewer.CanContentScroll="False" ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemsSource="{Binding Doctors}" BorderThickness="0">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Padding" Value="0"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Border BorderBrush="Black" BorderThickness="1">
+                                    <TextBlock Style="{DynamicResource DoctorInfo}" Text="{Binding Name}"></TextBlock>
+                                </Border>
+                                <Border BorderBrush="Black" BorderThickness="1">
+                                    <TextBlock Style="{DynamicResource DoctorInfo}" Text="{Binding Specialization.Name}"></TextBlock>
+                                </Border>
+                                <ListBox ItemsSource="{Binding Records}" BorderThickness="0" Background="Black">
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem">
+                                            <Setter Property="Padding" Value="0"/>
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <ListBox BorderBrush="White" BorderThickness="2" x:Name="Record1List" Width="135" Height="120" ItemsSource="{Binding}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden"> <!--Width = 200 Height = 200-->
+                                                <ListBox.ItemContainerStyle>
+                                                    <Style TargetType="ListBoxItem">
+                                                        <Setter Property="Padding" Value="3"/>
+                                                    </Style>
+                                                </ListBox.ItemContainerStyle>
+                                                <ListBox.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel Width="150"/> <!--Width = 200-->
+                                                    </ItemsPanelTemplate>
+                                                </ListBox.ItemsPanel>
+                                                <ListBox.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Button Width="35" Height="35" Content="{Binding Time}" Background="{Binding Color}"/> <!--Width = 40 Height = 40-->
+                                                    </DataTemplate>
+                                                </ListBox.ItemTemplate>
+                                            </ListBox>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </ScrollViewer>
+        <!--#endregion-->
+    </Grid>
+</Page>
+
+        <!--#endregion-->
